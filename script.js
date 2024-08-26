@@ -1,49 +1,74 @@
-function showPage(pageId) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-}
-
-document.getElementById('create-group-form').addEventListener('submit', function (e) {
+document.getElementById('login').addEventListener('submit', function(e) {
     e.preventDefault();
-    const groupName = this.querySelector('input').value;
-    createGroup(groupName);
     showPage('home-page');
 });
 
-function createGroup(name) {
-    const groupItem = document.createElement('div');
-    groupItem.className = 'group-item';
-    groupItem.textContent = name;
-    groupItem.onclick = function () {
-        enterGroup(name);
-    };
-    document.getElementById('groups-list').appendChild(groupItem);
+document.getElementById('register-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Compte créé !");
+    showPage('login-page');
+});
+
+document.getElementById('reset-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Lien de réinitialisation envoyé !");
+    showPage('login-page');
+});
+
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
 }
 
-function enterGroup(name) {
-    document.getElementById('group-name').textContent = name;
-    document.getElementById('group-admin').textContent = 'Vous'; // Simplification
-    document.getElementById('group-members-count').textContent = '1'; // Simplification
-    showPage('group-page');
+function createGroup() {
+    const groupName = prompt("Entrez le nom du groupe:");
+    if (groupName) {
+        const group = {
+            name: groupName,
+            admin: "Vous",
+            members: 1
+        };
+        renderGroup(group);
+        showPage('group-page');
+        document.getElementById('group-name').innerText = group.name;
+        document.getElementById('group-admin').innerText = `Admin: ${group.admin}`;
+        document.getElementById('group-members').innerText = `Membres: ${group.members}`;
+    }
 }
 
-function uploadPhoto() {
-    alert('Fonction pour importer une photo.');
+function joinGroup() {
+    alert("Rejoindre un groupe n'est pas encore implémenté.");
+}
+
+function renderGroup(group) {
+    const groupElement = document.createElement('div');
+    groupElement.classList.add('group');
+    groupElement.innerHTML = `
+        <p>${group.name}</p>
+        <p>Admin: ${group.admin}</p>
+        <p>Membres: ${group.members}</p>
+        <button onclick="showPage('group-page')">Accéder</button>
+    `;
+    document.getElementById('groups').appendChild(groupElement);
+}
+
+function importPhoto() {
+    alert("Importer une photo n'est pas encore implémenté.");
 }
 
 function takePhoto() {
-    alert('Fonction pour prendre une photo.');
+    alert("Prendre une photo n'est pas encore implémenté.");
 }
 
 function publishPhoto() {
-    alert('Fonction pour publier une photo.');
+    alert("Publier anonymement n'est pas encore implémenté.");
 }
 
 function ratePhoto() {
-    alert('Fonction pour noter une photo.');
+    alert("Noter la photo n'est pas encore implémenté.");
 }
 
 function guessAuthor() {
-    alert('Fonction pour deviner l\'auteur de la photo.');
+    alert("Deviner l'auteur n'est pas encore implémenté.");
 }
