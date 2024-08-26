@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseau Social</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Page de Connexion -->
+        <div id="login-page" class="page active">
+            <h1>Bienvenue sur le Réseau Social</h1>
+            <button onclick="showPage('register-page')">Créer un compte</button>
+            <button onclick="showPage('login-form')">Se connecter</button>
+            <button onclick="showPage('reset-password-page')">Réinitialiser le mot de passe</button>
+        </div>
+
+        <!-- Page de Création de Compte -->
+        <div id="register-page" class="page">
+            <h1>Créer un compte</h1>
+            <form id="register-form">
+                <input type="text" placeholder="Nom d'utilisateur" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Mot de passe" required>
+                <button type="submit">S'inscrire</button>
+            </form>
+            <button onclick="showPage('login-page')">Retour</button>
+        </div>
+
+        <!-- Page de Connexion -->
+        <div id="login-form" class="page">
+            <h1>Connexion</h1>
+            <form id="login-form">
+                <input type="text" placeholder="Nom d'utilisateur ou Email" required>
+                <input type="password" placeholder="Mot de passe" required>
+                <button type="submit">Se connecter</button>
+            </form>
+            <button onclick="showPage('login-page')">Retour</button>
+        </div>
+
+        <!-- Page de Réinitialisation du Mot de Passe -->
+        <div id="reset-password-page" class="page">
+            <h1>Réinitialiser le mot de passe</h1>
+            <form id="reset-password-form">
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Envoyer le lien</button>
+            </form>
+            <button onclick="showPage('login-page')">Retour</button>
+        </div>
+
+        <!-- Page d'Accueil -->
+        <div id="home-page" class="page">
+            <h1>Page d'Accueil</h1>
+            <button onclick="showPage('create-group-page')">Créer un groupe</button>
+            <button onclick="showPage('join-group-page')">Rejoindre un groupe</button>
+
+            <div id="groups-list">
+                <!-- Les groupes apparaissent ici -->
+            </div>
+        </div>
+
+        <!-- Page de Création de Groupe -->
+        <div id="create-group-page" class="page">
+            <h1>Créer un Groupe</h1>
+            <form id="create-group-form">
+                <input type="text" placeholder="Nom du groupe" required>
+                <button type="submit">Créer</button>
+            </form>
+            <button onclick="showPage('home-page')">Retour</button>
+        </div>
+
+        <!-- Page de Groupe -->
+        <div id="group-page" class="page">
+            <h1 id="group-name">Nom du Groupe</h1>
+            <p>Administrateur: <span id="group-admin">Admin</span></p>
+            <p>Membres: <span id="group-members-count">0</span></p>
+
+            <button onclick="uploadPhoto()">Importer une photo</button>
+            <button onclick="takePhoto()">Prendre une photo</button>
+            <button onclick="publishPhoto()">Publier la photo</button>
+            <button onclick="ratePhoto()">Noter une photo</button>
+            <button onclick="guessAuthor()">Deviner l'auteur</button>
+            <button onclick="showPage('home-page')">Retour</button>
+
+            <div id="photo-gallery">
+                <!-- Photos publiées apparaîtront ici -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
